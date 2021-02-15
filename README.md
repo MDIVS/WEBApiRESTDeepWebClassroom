@@ -1,0 +1,1 @@
+**O projeto está na pasta QuizWebAPIREST. Demais arquivos são resíduos do processo de desenvolvimento.**

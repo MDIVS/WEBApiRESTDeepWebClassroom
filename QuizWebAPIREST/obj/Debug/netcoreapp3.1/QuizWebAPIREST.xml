@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuizWebAPIREST</name>
+    </assembly>
+    <members>
+        <member name="M:QuizWebAPIREST.Controllers.GameController.getGameversion">
+            <summary>
+            Return a game version list
+            </summary>
+            <returns>List with active game versions</returns>
+            <response code="200">Success</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.GameController.getTeachers">
+            <summary>
+            Get the teachers from users previously registred. ONLY users with "aluno" or "professor" role.
+            </summary>
+            <returns>List of users with "professor" role</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.GameController.getTeacherbyId(System.Int64)">
+            <summary>
+            Get a specific teacher by one Id. ONLY users with "aluno" or "professor" role.
+            </summary>
+            <param name="id">Teacher id</param>
+            <returns>User with a specific id</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.GameController.getQuizbyId(System.Int64)">
+            <summary>
+            Get a quiz by id. ONLY Users with "professor" or "aluno" role.
+            </summary>
+            <param name="id">Quiz id</param>
+            <returns>Quiz</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.QuizController.CreateQuiz(QuizWebAPIREST.Models.PostQuiz)">
+            <summary>
+            Register a quiz in database. You must pass a quiz object with some data by body. ONLY users with professor" role.
+            </summary>
+            <returns>object with message</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.QuizController.GetQuizList">
+            <summary>
+            Get a quiz list. ONLY users with "professor" role.
+            </summary>
+            <returns>Quiz list</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.QuizController.GetQuizList(System.Int64)">
+            <summary>
+            Get a specific quiz by Id. ONLY users with "professor" role.
+            </summary>
+            <param name="id">User id</param>
+            <returns>User with a specific id</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.QuizController.getQuiz">
+            <summary>
+            Get a random public quiz.
+            </summary>
+            <returns>Quiz</returns>
+            <response code="200">Success</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.RoomController.CreateRoom(QuizWebAPIREST.Models.Room)">
+            <summary>
+            Used to create a classroom. You must pass a Room data by body. ONLY users with role "professor".
+            </summary>
+            <returns>object with message</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.RoomController.UpdateClassroomQuiz(QuizWebAPIREST.Models.User,System.Int64,System.Int64)">
+            <summary>
+            Update classroom quiz. You must pass the user email and password by the body. ONLY the classroom author can do it!!!
+            </summary>
+            <param name="user"></param>
+            <param name="roomid">Room id to be updated</param>
+            <param name="quizid">Quiz id to put in the room</param>
+            <returns>status messages</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.RoomController.getRooms">
+            <summary>
+            Get the room list.
+            </summary>
+            <returns>List with previously registred rooms</returns>
+            <response code="200">Success</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.UserController.Authenticate(QuizWebAPIREST.Models.User)">
+            <summary>
+            Login with some previously registred user. You must pass a User by the body.
+            </summary>
+            <returns>Object that contains user and token information</returns>
+            <response code="200">Success</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.UserController.CreateAccount(QuizWebAPIREST.Models.User)">
+            <summary>
+            Register an account in the database. You must pass a user by the body.
+            </summary>
+            <returns>object with message</returns>
+            <response code="200">Success</response>
+            <response code="400">BadRequest: verifique as mensagens contidas na resposta da API.</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.UserController.Matricular(QuizWebAPIREST.Models.User,System.Int64)">
+            <summary>
+            Update user classroom. You must pass the user by the body. ONLY users with "aluno" role.
+            </summary>
+            <param name="user">User email and password</param>
+            <param name="roomid">Room id</param>
+            <returns>List with previously registred users</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.UserController.GetActivity(QuizWebAPIREST.Models.User)">
+            <summary>
+            Get classroom activity. You must pass the user by the body. ONLY users with "aluno" role.
+            </summary>
+            <returns>Quiz</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.UserController.DoActivity(QuizWebAPIREST.Models.User,System.String)">
+            <summary>
+            Answer a classroom activity. You must pass the user by the body. ONLY users with "aluno" role.
+            </summary>
+            <param name="user">User email and password</param>
+            <param name="answer">User answer</param>
+            <returns>Quiz</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.UserController.getUsers">
+            <summary>
+            Get the users list. ONLY users with "professor" role.
+            </summary>
+            <returns>List with previously registred users</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.UserController.getUserbyId(System.Int64)">
+            <summary>
+            Get a specific user by one Id. ONLY users with "professor" role.
+            </summary>
+            <param name="id">User id</param>
+            <returns>User with a specific id</returns>
+            <response code="200">Success</response>
+            <response code="401">Unauthorized. Token not present, invalid or expired</response>
+        </member>
+        <member name="M:QuizWebAPIREST.Controllers.UserController.getUserImageAsync(System.Int64)">
+            <summary>
+            Get user gravatar data by user id.
+            </summary>
+            <param name="id">User id</param>
+            <returns>JSON with gravatar data</returns>
+            <response code="200">Success</response>
+        </member>
+    </members>
+</doc>

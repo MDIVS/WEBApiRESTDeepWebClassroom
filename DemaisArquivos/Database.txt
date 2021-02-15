@@ -1,0 +1,28 @@
+--------------------
+-- creating table --
+--------------------
+create sequence quiz_id_seq increment 1 minvalue 1 maxvalue 922372036854775807 start 1 cache 1;
+
+create table quiz_table (
+	id bigint default nextval('quiz_id_seq') not null,
+	author character varying(500) not null,
+	question character varying(5000) not null,
+	answer character varying(5000) not null,
+	notanswer character varying(5000),
+	creation timestamp(4) without time zone not null,
+	constraint postpkey primary key (id)
+)
+
+select * from quiz_table;
+
+----------------
+-- first data --
+----------------
+insert into quiz_table(author,question,answer,notanswer,creation)
+values('random','alex trabalha na Solutis','verdadeiro','falso',now());
+
+--------------
+-- drop all --
+--------------
+drop table if exists quiz_table;
+drop sequence if exists quiz_id_seq;
